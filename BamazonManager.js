@@ -104,7 +104,9 @@ var addProduct = function(){
             Price: answer.cost,
             StockQuantity: answer.quantity
         } , function(err, res) {
+            console.log("--------------------------------------");
             console.log("Your item was successfully added!");
+            console.log("--------------------------------------");
             displayMenu();
         })
     })

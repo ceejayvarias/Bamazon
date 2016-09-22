@@ -43,17 +43,24 @@ var buyRequest = function() {
 
     	connection.query(query, [answer.id], function(err, res) {
     		if (answer.quantity == 0) {
+    			console.log("--------------------------------------");
     			console.log("Your order was cancelled!");
+    			console.log("--------------------------------------");
     		}
     		else if (answer.quantity < res[0].StockQuantity) {
+    			console.log("--------------------------------------");
     			console.log("Your order went through at the price of: $" + res[0].Price);
     			var newQuantity = res[0].StockQuantity - answer.quantity;
     			connection.query("UPDATE bamazon.products SET ? WHERE ?", [{StockQuantity: newQuantity}, {ItemID: answer.id}], function(err, res) {
     				console.log("There are " + newQuantity + " left of this item.");
+    				console.log("--------------------------------------");
                 });
     		}
     		else{
+    			console.log("--------------------------------------");
     			console.log("Insufficient quantity!");
+    			console.log("--------------------------------------");
+    			displayItems();
     		}
     })
     })
